@@ -1,3 +1,4 @@
+require('dotenv').config()
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -45,7 +46,8 @@
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
-
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const mnemonic =  "casino sphere yellow current track ignore bar follow afraid entry mosquito mechanic";
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -68,6 +70,30 @@ module.exports = {
      host: "127.0.0.1",     // Localhost (default: none)
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "5777",       // Any network (default: none)
+    },
+    arbitrum_sepolia: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://arbitrum-sepolia.infura.io/v3/49f12cee9190495eb0587a0180543527")
+      },
+      network_id: 421614
+    },
+    sepolia: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://sepolia.infura.io/v3/49f12cee9190495eb0587a0180543527")
+      },
+      network_id: 11155111
+    },
+    fantom_test: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rpc.ankr.com/fantom_testnet/")
+      },
+      network_id: 4002
+    },
+    polygon_amoy: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rpc-amoy.polygon.technology")
+      },
+      network_id: 80002
     }
     //
     // An additional network, but with some advanced options…
